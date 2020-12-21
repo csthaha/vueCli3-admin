@@ -1,28 +1,52 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+
+import NProgress from 'nprogress' //进度条
+import 'nprogress/nprogress.css' // 进度条样式
+NProgress.configure({ showSpinner: false }) // 不显示螺旋加载
+
+import index from './modules/index'
+
+const routerPush = VueRouter.prototype.push
+VueRouter.prototype.push = function(location) {
+  return routerPush.call(this, location).catch((error) => error)
+}
 
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home
-  },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
+  ...index,
+  // ...index
+  // ...withdrawCash,
+  // ...user,
+  // ...manage
 ];
 
 const router = new VueRouter({
-  routes
-});
+  mode: 'history',
+  base: process.env.VUE_APP_BASE_URL, 
+  routes,
+  scrollBehavior(to, from) {
+    return {
+      x: 0,
+      y: 0
+    }
+  }
+})
+router.beforeEach((to, from, next) => {
+  // 开启进度条
+  NProgress.start()
+  // if (store.getters.token) return next()
+  // if (to.path === '/login') return next()
+  // next({ path: '/login', replace: true })
+  next()
+})
+
+router.afterEach((to) => {
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  NProgress.done() // 结束Progress
+})
 
 export default router;
