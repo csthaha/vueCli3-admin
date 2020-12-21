@@ -6,6 +6,14 @@ export default [
       meta: {
         title: '海外电商'
       }
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: () => import(/* webpackChunkName: "index" */ '@/views/layout/Layout.vue'),
+      meta: {
+        title: '海外电商布局'
+      }
     }
 ]
   
