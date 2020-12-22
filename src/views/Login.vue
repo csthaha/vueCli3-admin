@@ -118,7 +118,7 @@ export default {
 .login {
   width: 100%;
   height: 100vh;
-  background-image: url("http://demo.daipianpian.com/vue/login/static/img/login_bg.77503e29.png");
+  background-image: url("https://tsx-1302788370.file.myqcloud.com/bg.png");
   overflow: hidden;
   background-size: cover;
   .login-form {
