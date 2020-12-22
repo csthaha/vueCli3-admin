@@ -23,7 +23,10 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',   
+  // 正常项目中我们会因为网站路径中带有“#”而将vue-router开启history模式，
+  // 以去掉#号。但开启history模式需要服务器的支持，因此在github pages中不支持这一模式，
+  // 所以我们不能开启history模式。
   base: process.env.VUE_APP_BASE_URL, 
   routes,
   scrollBehavior(to, from) {
