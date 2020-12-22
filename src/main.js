@@ -9,6 +9,10 @@ Vue.use(ElementUI, { size: "small" });
 
 import i18n from "./assets/i18n/i18n"
 
+import {message} from './utils/utils'
+// 全局挂在提示框
+Vue.prototype.$message = message
+
 // 全局样式
 import '@/assets/scss/index.scss'
 
