@@ -17,7 +17,7 @@ export default [
       name: 'about',
       component: () => import(/* webpackChunkName: "index" */ '@/views/About.vue'),
       meta: {
-        title: '海外电商'
+        title: '海外电商测试页'
       }
     },
     {
@@ -27,6 +27,10 @@ export default [
       meta: {
         title: '海外电商首页'
       }
+    },
+    {
+      path: '*',
+      redirect: '/about'
     }
 ]
   

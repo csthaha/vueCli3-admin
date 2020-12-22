@@ -14,7 +14,7 @@
       <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-location"></i>
-          <span slot="title">导航一</span>
+          <span slot="title">{{$t("message.nav1")}}</span>
         </template>
         <el-menu-item-group>
           <span slot="title">分组一</span>
@@ -71,7 +71,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;
@@ -84,5 +84,8 @@ export default {
     left: 0;
     bottom: 0;
     z-index: 1001; */
+    .el-menu-vertical-demo {
+      min-height: 100vh;
+    }
 }
 </style>

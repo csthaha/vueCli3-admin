@@ -4,7 +4,14 @@ const en = {
     message: {
         'hello': 'hello, world',
         'msg': 'point out',
-
+        "nav1": "nav1",
+    },
+    header: {
+        fullScreen:'fullScreen',
+        cancelFullScreen:'cancelFullScreen',
+        logout: 'logout',
+        setting: 'setting',
+        home: 'home'
     },
     ...enLocale
 }

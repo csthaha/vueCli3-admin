@@ -21,6 +21,32 @@
             <i class="el-icon-rank"></i>
           </el-tooltip>
         </div>
+
+        <!-- 切换语言 -->
+        <SelectLang />
+
+        <!-- 用户名下拉菜单 -->
+        <el-dropdown class="avatar-container" trigger="click">
+          <div class="avatar-wrapper">
+            <img
+              src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3266090804,66355162&fm=26&gp=0.jpg"
+              class="user-avatar"
+            />
+            <span>{{ username || "哈喽" }}</span
+            ><i class="el-icon-caret-bottom" />
+          </div>
+          <el-dropdown-menu slot="dropdown" class="user-dropdown">
+            <router-link class="inlineBlock" to="/home">
+              <el-dropdown-item>{{ $t("header.home") }}</el-dropdown-item>
+            </router-link>
+            <el-dropdown-item>{{ $t("header.setting") }}</el-dropdown-item>
+            <el-dropdown-item divided>
+              <span style="display:block;" @click="logout">{{
+                $t("header.logout")
+              }}</span>
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </div>
     </div>
   </div>
@@ -29,16 +55,19 @@
 <script>
 import ShowAside from "./ShowAside";
 import Breadcrumb from "./Breadcrumb";
+import SelectLang from "./SelectLang";
 
 export default {
   data() {
     return {
-      fullscreen: false
+      fullscreen: false,
+      username: ""
     };
   },
   components: {
     ShowAside,
-    Breadcrumb
+    Breadcrumb,
+    SelectLang
   },
   methods: {
     toggleClick(val) {
@@ -71,6 +100,12 @@ export default {
         }
       }
       this.fullscreen = !this.fullscreen;
+    },
+
+    logout(command) {
+      //   this.$store.commit("TAGES_LIST", []);
+      //   this.$store.commit("SET_BREAD", ["home"]);
+      this.$router.push("/login");
     }
   }
 };
@@ -85,11 +120,38 @@ export default {
   display: flex;
   .header-right {
     position: absolute;
-    right: 0;
+    right: 20px;
     .header-user-con {
+      display: flex;
       .btn-fullscreen {
         transform: rotate(45deg);
         font-size: 20px;
+        margin-right: 10px;
+      }
+    }
+    .avatar-container {
+      height: 50px;
+      display: flex;
+      margin-right: 10px;
+      font-size: 0;
+      .avatar-wrapper {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        .user-avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
+        }
+        span {
+          color: rgb(171, 128, 250);
+          font-size: 12px;
+        }
+        .el-icon-caret-bottom {
+          position: absolute;
+          right: -15px;
+          font-size: 12px;
+        }
       }
     }
   }
