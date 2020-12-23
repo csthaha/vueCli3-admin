@@ -10,34 +10,31 @@
       @open="handleOpen"
       @close="handleClose"
       :collapse="isCollapse"
+      @select="selectMenu"
     >
-      <el-submenu index="1">
+      <el-submenu index="nav1">
         <template slot="title">
           <i class="el-icon-location"></i>
           <span slot="title">{{$t("message.nav1")}}</span>
         </template>
         <el-menu-item-group>
-          <span slot="title">分组一</span>
-          <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
+          <!-- <span slot="title">分组一</span> -->
+          <el-menu-item index="op1">选项1</el-menu-item>
+          <el-menu-item index="op2">选项2</el-menu-item>
         </el-menu-item-group>
         <el-menu-item-group title="分组2">
-          <el-menu-item index="1-3">选项3</el-menu-item>
+          <el-menu-item index="op3">选项3</el-menu-item>
         </el-menu-item-group>
-        <el-submenu index="1-4">
+        <el-submenu index="op4">
           <span slot="title">选项4</span>
-          <el-menu-item index="1-4-1">选项1</el-menu-item>
+          <el-menu-item index="op4-1">选项1</el-menu-item>
         </el-submenu>
       </el-submenu>
-      <el-menu-item index="2">
+      <el-menu-item index="nav2" @click="go2Nav(2)">
         <i class="el-icon-menu"></i>
         <span slot="title">导航二</span>
       </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <i class="el-icon-document"></i>
-        <span slot="title">导航三</span>
-      </el-menu-item>
-      <el-menu-item index="4">
+      <el-menu-item index="nav4" @click="go2Nav(4)">
         <i class="el-icon-setting"></i>
         <span slot="title">导航四</span>
       </el-menu-item>
@@ -66,6 +63,22 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
+    },
+    // 菜单激活回调
+    selectMenu(key, keyPath) {
+      console.log(key, keyPath)
+      if (keyPath.indexOf("home") > -1) return;
+      if (key!==null) {
+        let breadList = ["home"];
+        breadList.push(...keyPath);
+        console.log(breadList);
+        this.$store.commit("SET_BREAD", breadList);
+      }
+    },
+    go2Nav(index) {
+      console.log('go to nav', index)
+      let path = `/nav${index}`
+      this.$router.push({path})
     }
   }
 };

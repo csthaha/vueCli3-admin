@@ -5,7 +5,7 @@
       class="main-container"
     >
       <Header />
-      <!-- <Main /> -->
+      <Main />
     </div>
   </div>
 </template>
@@ -13,13 +13,15 @@
 <script>
 import Aside from "./components/Aside";
 import Header from "./components/Header";
+import Main from "./components/Main"
 export default {
   data() {
     return {};
   },
   components: {
     Aside,
-    Header
+    Header,
+    Main
   }
 };
 </script>

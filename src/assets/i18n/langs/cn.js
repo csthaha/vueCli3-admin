@@ -13,6 +13,17 @@ const cn = {
         setting: '设置',
         home: '首页'
     },
+    route: {
+        home: '首页',
+        nav1: '导航一',
+        op3: '选项3',
+        op1: '选项1',
+        op2: '选项2',
+        op4: '选项4',
+        "op4-1": '选项4-1',
+        nav2: '导航二',
+        nav4: '导航四'
+    },
     ...zhLocale
 }
 

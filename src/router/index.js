@@ -6,6 +6,8 @@ import 'nprogress/nprogress.css' // 进度条样式
 NProgress.configure({ showSpinner: false }) // 不显示螺旋加载
 
 import index from './modules/index'
+import nav2 from './modules/nav2/index'
+import nav4 from './modules/nav4/index'
 
 const routerPush = VueRouter.prototype.push
 VueRouter.prototype.push = function(location) {
@@ -16,6 +18,8 @@ Vue.use(VueRouter);
 
 const routes = [
   ...index,
+  ...nav2,
+  ...nav4
   // ...index
   // ...withdrawCash,
   // ...user,
