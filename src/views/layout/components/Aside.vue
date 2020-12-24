@@ -29,18 +29,27 @@
           <el-menu-item index="op4-1">选项1</el-menu-item>
         </el-submenu>
       </el-submenu>
-      <!-- <el-menu-item index="nav2" @click="go2Nav(2)">
-        <i class="el-icon-menu"></i>
-        <span slot="title">导航二</span>
-      </el-menu-item>
-      <el-menu-item index="nav4" @click="go2Nav(4)">
-        <i class="el-icon-setting"></i>
-        <span slot="title">导航四</span>
-      </el-menu-item> -->
 
-      <el-menu-item :index="aside.nameEn" @click="go2Nav(aside.nameEn.slice(-1))" v-for="(aside, index) in asideList" :key="index">
+      <div v-if="asideList.length === 0">
+        <el-menu-item index="nav2" @click="go2Nav(2)">
+          <i class="el-icon-menu"></i>
+          <span slot="title">导航二</span>
+        </el-menu-item>
+        <el-menu-item index="nav4" @click="go2Nav(4)">
+          <i class="el-icon-setting"></i>
+          <span slot="title">导航四</span>
+        </el-menu-item>
+      </div>
+
+      <el-menu-item
+        v-else
+        :index="aside.nameEn"
+        @click="go2Nav(aside.nameEn.slice(-1))"
+        v-for="(aside, index) in asideList"
+        :key="index"
+      >
         <i class="el-icon-setting"></i>
-        <span slot="title">{{lang == 'en' ? aside.nameEn : aside.name}}</span>
+        <span slot="title">{{ lang == "en" ? aside.nameEn : aside.name }}</span>
       </el-menu-item>
     </el-menu>
   </div>
@@ -60,7 +69,7 @@ export default {
   computed: {
     ...mapState(["isCollapse"]),
     lang() {
-      return this.$store.state.lang
+      return this.$store.state.lang;
     }
   },
   created() {
@@ -70,13 +79,18 @@ export default {
     // 获取侧边栏
     getAsideList() {
       console.log("获取侧边栏", this.$api);
-      this.$api.aside.getAsideList().then(res => {
-        console.log("aside is", res);
-        if (res.code === 0) {
-          this.asideList = res.data;
-          console.log('-----',this.asideList)
-        }
+      this.$api.aside.getAsideList().then(
+        res => {
+          console.log("aside is", res);
+          if (res.code === 0) {
+            this.asideList = res.data;
+            console.log("-----", this.asideList);
+          }
+      }).catch(err => {
+        this.asideList = []
+        console.log('err', this.asideList)
       });
+      console.log(this.asideList)
     },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
