@@ -4,11 +4,17 @@ import Vuex from "vuex";
 import state from './state.js'
 import mutations from './mutations.js'
 
+// import user from './modules/'
+// import getters from './getters'
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state,
   mutations,
   actions: {},
-  modules: {}
+  modules: {
+    // user
+  },
+  // getters
 });

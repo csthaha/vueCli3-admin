@@ -5,7 +5,7 @@
         语言切换<i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown" class="dropMenu">
-        <el-dropdown-item :disabled="lang === 'cn'" command="zh"
+        <el-dropdown-item :disabled="lang === 'cn'" command="cn"
           >中文</el-dropdown-item
         >
         <el-dropdown-item :disabled="lang === 'en'" command="en"
@@ -27,6 +27,7 @@ export default {
       console.log(command);
       this.$i18n.locale = command;
       this.$store.commit("GET_LANGUAGE", command);
+      console.log(this.$store.state.lang)
     }
   }
 };

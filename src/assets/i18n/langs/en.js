@@ -14,15 +14,15 @@ const en = {
         home: 'home'
     },
     route: {
-        home: '首页',
-        nav1: '导航一',
-        op3: '选项3',
-        op1: '选项1',
-        op2: '选项2',
+        home: 'home',
+        nav1: 'nav1',
+        op3: 'op3',
+        op1: 'op1',
+        op2: 'op2',
         op4: 'op4',
         "op4-1": 'op4-1',
-        nav2: '导航二',
-        nav4: '导航四'
+        nav2: 'nav2',
+        nav4: 'nav4'
     },
     ...enLocale
 }

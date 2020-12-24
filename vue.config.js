@@ -25,6 +25,16 @@ module.exports = {
     },
     devServer: {
         disableHostCheck: true,
-        port: 8090
+        port: 8090,
+        // disableHostCheck: true, //webpack-dev-server 默认只能接受来自本地的请求
+        // //关闭后可以接受来自任何host 请求
+        // // proxy: process.env.VUE_APP_API_URL
+        proxy: {
+            '/seas': {
+                target: process.env.PROXY_API_BASE_URL,
+                pathRewrite: { '^/seas': '' },
+                changeOrigin: true
+            },
+        }
     }
 }

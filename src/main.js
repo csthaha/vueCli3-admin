@@ -16,6 +16,11 @@ Vue.prototype.$message = message
 // 全局样式
 import '@/assets/scss/index.scss'
 
+/**
+ * 接口挂载 $api
+ */
+import './api'
+
 Vue.config.productionTip = false;
 
 new Vue({
