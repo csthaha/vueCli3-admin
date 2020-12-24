@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="login-form">
-      <h3>系统登录</h3>
+      <h3>{{ $store.state.lang == "cn" ? "系统登录" : "System Login" }}</h3>
       <el-form
         :model="ruleForm"
         status-icon
@@ -10,10 +10,10 @@
         label-width="100px"
         class="demo-ruleForm"
       >
-        <el-form-item label="账号" prop="count">
+        <el-form-item :label="$store.state.lang == 'cn' ? '账号' : 'account'" prop="count">
           <el-input v-model.number="ruleForm.count"></el-input>
         </el-form-item>
-        <el-form-item label="密码" prop="pass">
+        <el-form-item :label="$store.state.lang == 'cn' ? '密码' : 'password'" prop="pass">
           <el-input
             type="password"
             v-model="ruleForm.pass"
@@ -32,9 +32,16 @@
         </el-form-item> -->
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')"
-            >登录</el-button
+            >{{$store.state.lang == 'cn' ? '登录':'Login'}}</el-button
           >
-          <el-button @click="resetForm('ruleForm')">重置</el-button>
+          <el-button @click="resetForm('ruleForm')">{{$store.state.lang == 'cn' ?'重置':'Reset'}}</el-button>
+          <el-switch
+            v-model="lang"
+            inactive-text="CN"
+            active-text="EN"
+            @change="changeLang"
+          >
+          </el-switch>
         </el-form-item>
       </el-form>
     </div>
@@ -93,14 +100,28 @@ export default {
       }
     };
   },
+  computed: {
+    lang: {
+      get() {
+        return this.$store.state.lang == "cn" ? false : true;
+      },
+      set(val) {
+        if (val) {
+          this.$store.commit("GET_LANGUAGE", "en");
+        } else {
+          this.$store.commit("GET_LANGUAGE", "cn");
+        }
+      }
+    }
+  },
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.$message("success","登录成功",2000)
+          this.$message("success", "登录成功", 2000);
           this.$router.push({
-              path: '/home'
-          })
+            path: "/home"
+          });
         } else {
           console.log("error submit!!");
           return false;
@@ -109,6 +130,15 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+    },
+    changeLang(val) {
+      if (val) {
+        this.$store.commit("GET_LANGUAGE", "en");
+        console.log(this.$store.state.lang)
+      } else {
+        this.$store.commit("GET_LANGUAGE", "cn");
+        console.log(this.$store.state.lang)
+      }
     }
   }
 };
@@ -134,6 +164,19 @@ export default {
     h3 {
       text-align: center;
       margin-bottom: 18px;
+    }
+    /deep/ .el-form {
+      .el-form-item__label {
+        max-width: 100px;
+        width: 55px !important;
+        text-align: left;
+      }
+      .el-form-item__content {
+        margin-left: 70px !important;
+        .el-switch {
+          margin-left: 30px;
+        }
+      }
     }
   }
 }

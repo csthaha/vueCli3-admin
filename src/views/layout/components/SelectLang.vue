@@ -2,7 +2,7 @@
   <div>
     <el-dropdown trigger="click" @command="handleSetLanguage">
       <span class="el-dropdown-link">
-        语言切换<i class="el-icon-arrow-down el-icon--right"></i>
+        {{lang === 'cn' ? '语言切换' : 'Change Lang'}}<i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown" class="dropMenu">
         <el-dropdown-item :disabled="lang === 'cn'" command="cn"

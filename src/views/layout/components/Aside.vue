@@ -15,29 +15,29 @@
       <el-submenu index="nav1">
         <template slot="title">
           <i class="el-icon-location"></i>
-          <span slot="title">{{ $t("message.nav1") }}</span>
+          <span slot="title">{{ lang == "en" ? 'nav1' : '导航1' }}</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="op1">选项1</el-menu-item>
-          <el-menu-item index="op2">选项2</el-menu-item>
+          <el-menu-item index="op1">{{ lang == "en" ? 'op1' : '选项1' }}</el-menu-item>
+          <el-menu-item index="op2">{{ lang == "en" ? 'op2' : '选项2' }}</el-menu-item>
         </el-menu-item-group>
         <el-menu-item-group>
-          <el-menu-item index="op3">选项3</el-menu-item>
+          <el-menu-item index="op3">{{ lang == "en" ? 'op3' : '选项3' }}</el-menu-item>
         </el-menu-item-group>
         <el-submenu index="op4">
-          <span slot="title">选项4</span>
-          <el-menu-item index="op4-1">选项1</el-menu-item>
+          <span slot="title">{{ $t("route.op4") }}</span>
+          <el-menu-item index="op4-1">{{ lang == "en" ? 'op1' : '选项1' }}</el-menu-item>
         </el-submenu>
       </el-submenu>
 
       <div v-if="asideList.length === 0">
         <el-menu-item index="nav2" @click="go2Nav(2)">
           <i class="el-icon-menu"></i>
-          <span slot="title">导航二</span>
+          <span slot="title">{{ $t("route.nav2") }}</span>
         </el-menu-item>
         <el-menu-item index="nav4" @click="go2Nav(4)">
           <i class="el-icon-setting"></i>
-          <span slot="title">导航四</span>
+          <span slot="title">{{ lang == "en" ? 'nav4' : '导航4' }}</span>
         </el-menu-item>
       </div>
 
