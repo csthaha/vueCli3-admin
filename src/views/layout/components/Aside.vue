@@ -48,7 +48,7 @@
         v-for="(aside, index) in asideList"
         :key="index"
       >
-        <i class="el-icon-setting"></i>
+        <i :class="aside.className"></i>
         <span slot="title">{{ lang == "en" ? aside.nameEn : aside.name }}</span>
       </el-menu-item>
     </el-menu>
